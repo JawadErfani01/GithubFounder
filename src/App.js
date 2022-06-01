@@ -1,10 +1,19 @@
+import Navbar from "./components/Navbar/Navbar"
+import Fotter from "./components/Fotter"
+import { Route, Routes } from "react-router-dom"
+import Home from "./pages/Home"
+import About from "./pages/About"
 function App() {
   return (
-    <div>
-      <h1 className="text-5xl text-cyan-500 text-center font-bold p-10 italic">
-        Hello world
-      </h1>
-      <button className="btn btn-primary">Remove</button>
+    <div className="flex flex-col justify-between h-screen">
+      <Navbar />
+      <div className=" px-10 md:px-16">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+        </Routes>
+      </div>
+      <Fotter />
     </div>
   )
 }
