@@ -1,15 +1,17 @@
 import PropTypes from "prop-types"
+import { Link } from "react-router-dom"
 function Userlist({ person }) {
+  console.log(person)
   return (
     <div className="card  bg-base-100 shadow-xl">
-      <figure>
-        <img src={person.avatar_url} alt="Shoes" />
-      </figure>
+      <img src={person.avatar_url} alt="Shoes" />
+
       <div className="card-body">
         <h2 className="card-title">Name: {person.login}</h2>
-        <p>{person.followers_url}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">More ...</button>
+          <Link to={`/user/${person.login}`} className=" text-blue-300">
+            Visit Profile
+          </Link>
         </div>
       </div>
     </div>

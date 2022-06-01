@@ -3,44 +3,36 @@ import axios from "axios"
 export const GithubContext = createContext()
 function DisplayProvider({ children }) {
   const [showSearch, setshowSearch] = useState(false)
-  const [Search, setSearch] = useState("")
-  const [SearchPerson, setSearchPerson] = useState("")
-  console.log(SearchPerson)
+  const [loading, setloading] = useState(false)
   const [Data, setData] = useState([])
-  useEffect(() => {
-    axios
-      .get("https://api.github.com/users", {
-        headers: {
-          Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`
-        }
-      })
-      .then((res) => {
-        setData(res.data)
-      })
-  }, [])
 
-  const handelSearch = () => {
-    axios
-      .get(`https://api.github.com/users/${SearchPerson}`, {
+  const SearchUser = async (Search) => {
+    setloading(true)
+    const params = new URLSearchParams({
+      q: Search
+    })
+    await axios
+      .get(`${process.env.REACT_APP_GITHUB_URL}/search/users?${params}`, {
         headers: {
-          Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`
+          Authorization: `Basic ${process.env.REACT_APP_GITHUB_TOKEN}`
         }
       })
       .then((res) => {
-        setData([res.data])
+        setData(res.data.items)
+        setloading(false)
       })
   }
+
   return (
     <GithubContext.Provider
       value={{
         showSearch,
         setshowSearch,
-        Search,
-        setSearch,
         Data,
-        SearchPerson,
-        setSearchPerson,
-        handelSearch
+        setData,
+        loading,
+        setloading,
+        SearchUser
       }}
     >
       {children}

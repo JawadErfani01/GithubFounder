@@ -1,20 +1,14 @@
 import { Link } from "react-router-dom"
-import { useContext } from "react"
-import { GithubContext } from "../../context/DisplayProvider"
+import { useContext, useState } from "react"
+import { GithubContext } from "../../../context/DisplayProvider"
 import { FaGithub, FaSearch } from "react-icons/fa"
 function NavSearch() {
-  const {
-    showSearch,
-    setshowSearch,
-    handelSearch,
-    Search,
-    setSearch,
-    setSearchPerson
-  } = useContext(GithubContext)
+  const { showSearch, setshowSearch, SearchUser } = useContext(GithubContext)
+  const [Search, setSearch] = useState("")
+
   const handelSubmit = (e) => {
-    handelSearch()
     e.preventDefault()
-    setSearchPerson(Search)
+    SearchUser(Search)
     setSearch("")
   }
   return (
@@ -23,6 +17,7 @@ function NavSearch() {
         <FaGithub />
       </Link>
       <form
+        onSubmit={handelSubmit}
         className={`form-control sm:w-1/2 ${
           showSearch ? "block mt-32 w-full absolute" : "hidden"
         } sm:block`}
@@ -30,22 +25,20 @@ function NavSearch() {
         <div className="relative">
           <input
             type="text"
+            required
             placeholder="Search"
-            name="search"
             onChange={(e) => setSearch(e.target.value)}
             value={Search}
             className={`input  w-full ${
-              showSearch
-                ? "w-5/6 mx-auto block absolute   "
-                : setshowSearch(false)
+              showSearch ? "w-5/6 mx-auto block absolute   " : ""
             }  text-black input-bordered`}
           />
-          <i
+          <button
+            type="submit"
             className="absolute right-0  bg-indigo-600 p-4 px-4 md:px-5 lg:px-8 rounded-r-lg cursor-pointer text-white"
-            onClick={handelSubmit}
           >
             <FaSearch />
-          </i>
+          </button>
         </div>
       </form>
       <i
