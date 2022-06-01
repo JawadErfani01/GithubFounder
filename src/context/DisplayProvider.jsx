@@ -5,6 +5,7 @@ function DisplayProvider({ children }) {
   const [showSearch, setshowSearch] = useState(false)
   const [Search, setSearch] = useState("")
   const [SearchPerson, setSearchPerson] = useState("")
+  console.log(SearchPerson)
   const [Data, setData] = useState([])
   useEffect(() => {
     axios
@@ -17,16 +18,15 @@ function DisplayProvider({ children }) {
         setData(res.data)
       })
   }, [])
-  console.log(process.env)
-  const handelSearch = async () => {
-    await axios
+
+  const handelSearch = () => {
+    axios
       .get(`https://api.github.com/users/${SearchPerson}`, {
         headers: {
           Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`
         }
       })
       .then((res) => {
-        console.log(res.data)
         setData([res.data])
       })
   }
