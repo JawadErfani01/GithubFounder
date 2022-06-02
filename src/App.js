@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom"
 import Home from "./pages/Home"
 import About from "./pages/About"
 import Notfound from "./pages/Notfound"
+import UserProfile from "./components/Main/UserProfile"
 function App() {
   return (
     <div className="flex flex-col justify-between h-screen">
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/user/:login" element={<UserProfile />} />
           <Route path="/*" element={<Notfound />} />
         </Routes>
       </div>
