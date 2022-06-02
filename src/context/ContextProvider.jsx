@@ -1,7 +1,7 @@
-import { createContext, useState, useEffect } from "react"
+import { createContext, useState} from "react"
 import axios from "axios"
 export const GithubContext = createContext()
-function DisplayProvider({ children }) {
+function ContextProvider({ children }) {
   const [showSearch, setshowSearch] = useState(false)
   const [loading, setloading] = useState(false)
   const [Data, setData] = useState([])
@@ -55,4 +55,4 @@ function DisplayProvider({ children }) {
     </GithubContext.Provider>
   )
 }
-export default DisplayProvider
+export default ContextProvider

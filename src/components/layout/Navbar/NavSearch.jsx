@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useContext, useState } from "react"
-import { GithubContext } from "../../../context/DisplayProvider"
+import { GithubContext } from "../../../context/ContextProvider"
 import { FaGithub, FaSearch } from "react-icons/fa"
 function NavSearch() {
   const { showSearch, setshowSearch, SearchUser } = useContext(GithubContext)

@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { GithubContext } from "../../context/DisplayProvider"
+import { GithubContext } from "../../context/ContextProvider"
 import Userlist from "./Userlist"
 import Loading from "../layout/loading"
 function GithubUser() {

@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react"
-import { GithubContext } from "../../context/DisplayProvider"
+import { GithubContext } from "../../context/ContextProvider"
 import { useParams, useNavigate } from "react-router-dom"
 import { MdOutlineKeyboardBackspace } from "react-icons/md"
 import { FaUserFriends, FaUsers, FaCodepen, FaStore } from "react-icons/fa"
@@ -13,7 +13,6 @@ function UserProfile() {
     followers,
     following,
     location,
-    company,
     public_gists,
     html_url,
     twitter_username,

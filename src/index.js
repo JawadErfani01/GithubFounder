@@ -3,12 +3,12 @@ import ReactDOM from "react-dom/client"
 import "./index.css"
 import App from "./App"
 import { BrowserRouter } from "react-router-dom"
-import DisplayProvider from "./context/DisplayProvider"
+import ContextProvider from "./context/ContextProvider"
 const root = ReactDOM.createRoot(document.getElementById("root"))
 root.render(
-  <DisplayProvider>
+  <ContextProvider>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-  </DisplayProvider>
+  </ContextProvider>
 )
