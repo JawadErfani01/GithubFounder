@@ -5,7 +5,8 @@ function DisplayProvider({ children }) {
   const [showSearch, setshowSearch] = useState(false)
   const [loading, setloading] = useState(false)
   const [Data, setData] = useState([])
-
+  const [User, setUser] = useState({})
+  console.log(User)
   const SearchUser = async (Search) => {
     setloading(true)
     const params = new URLSearchParams({
@@ -22,7 +23,20 @@ function DisplayProvider({ children }) {
         setloading(false)
       })
   }
+  const getUser = async (login) => {
+    setloading(true)
 
+    await axios
+      .get(`${process.env.REACT_APP_GITHUB_URL}/users/${login}`, {
+        headers: {
+          Authorization: `Basic ${process.env.REACT_APP_GITHUB_TOKEN}`
+        }
+      })
+      .then((res) => {
+        setUser(res.data)
+        setloading(false)
+      })
+  }
   return (
     <GithubContext.Provider
       value={{
@@ -32,7 +46,9 @@ function DisplayProvider({ children }) {
         setData,
         loading,
         setloading,
-        SearchUser
+        SearchUser,
+        getUser,
+        User
       }}
     >
       {children}
