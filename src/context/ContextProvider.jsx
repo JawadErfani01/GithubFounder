@@ -1,4 +1,4 @@
-import { createContext, useState} from "react"
+import { createContext, useState } from "react"
 import axios from "axios"
 export const GithubContext = createContext()
 function ContextProvider({ children }) {
@@ -6,7 +6,6 @@ function ContextProvider({ children }) {
   const [loading, setloading] = useState(false)
   const [Data, setData] = useState([])
   const [User, setUser] = useState({})
-  console.log(User)
   const SearchUser = async (Search) => {
     setloading(true)
     const params = new URLSearchParams({
